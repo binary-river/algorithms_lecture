@@ -1,10 +1,9 @@
-/* *****************************************************************************
+package src.main;/* *****************************************************************************
  *  Name:              Ada Lovelace
  *  Coursera User ID:  123456
  *  Last modified:     October 16, 1842
  **************************************************************************** */
 
-package src.main;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
@@ -27,7 +26,7 @@ public class BinarySearch {
         //
         // return -1;
 
-        return rank(key, a, 0, a.length - 1, 0);
+        return rank(key, a, 0, a.length - 1);
     }
 
     public static int rank(int key, int[] a, int lo, int hi) {
@@ -39,21 +38,6 @@ public class BinarySearch {
         else if (key < a[mid]) return rank(key, a, lo, mid - 1);
         else return mid;
     }
-
-    public static int rank(int key, int[] a, int lo, int hi, int depth) {
-
-        for (int i = 0; i < depth; i++) {
-            System.out.print("\t");
-        }
-        System.out.println("lo:" + lo + ", hi:" + hi + ", depth:" + depth);
-
-        if (lo > hi) return -1;
-        int mid = (lo + hi) / 2;
-        if (key > a[mid]) return rank(key, a, mid + 1, hi, ++depth);
-        if (key < a[mid]) return rank(key, a, lo, mid - 1, ++depth);
-        return mid;
-    }
-
 
     public static void main(String[] args) {
 
@@ -76,9 +60,6 @@ public class BinarySearch {
         System.out.println("a .. " + a);
         System.out.println("b .. " + b);
         System.out.println("c .. " + c);
-
-        TestClass1.printTest();
-
     }
 
 }
