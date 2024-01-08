@@ -6,8 +6,18 @@
 
 package prac;
 
-public class Point2D {
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+
+public class TestPointGenerator {
+
     public static void main(String[] args) {
-        
+
+        StdOut.print("Input trials : ");
+        int t = StdIn.readInt();
+
+        PointGenerator pg = new PointGenerator(t);
+
+        StdOut.println(pg.getClosestDistance());
     }
 }
