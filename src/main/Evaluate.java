@@ -18,6 +18,8 @@ public class Evaluate {
         Stack<Double> vals = new Stack<>();
 
         // Assumption : spaces between every operands, operators
+        //              and expressions, subexpressions are consisted of
+        //              two operands separated by an operator
         while (!StdIn.isEmpty()) {
             String s = StdIn.readString();
             if (s.equals("(")) ;
