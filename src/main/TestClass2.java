@@ -40,5 +40,6 @@ public class TestClass2 {
 
         StdOut.println(c);
         StdOut.println(box.area());
+        
     }
 }
