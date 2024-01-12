@@ -27,16 +27,33 @@ public class FixedCapacityStack<Item> {
     }
 
     public void push(Item item) {
+        // resize array to prevent overflow
+        if (N == a.length) resize(a.length * 2);
         a[N++] = item;
     }
 
     public Item pop() {
-        return a[--N];
+        Item item = a[--N];
+        a[N] = null;
+        // resize array to prevent waste of memory
+        if (N > 0 && N == a.length / 4) resize(a.length / 2);
+
+        return item;
     }
 
+    // resize
+    private void resize(int max) {
+        Item[] temp = (Item[]) new Object[max];
+        for (int i = 0; i < N; i++) {
+            temp[i] = a[i];
+        }
+        a = temp;
+    }
+
+    // test code
     public static void main(String[] args) {
         FixedCapacityStack<String> s;
-        s = new FixedCapacityStack<>(100);
+        s = new FixedCapacityStack<>(1);
 
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
