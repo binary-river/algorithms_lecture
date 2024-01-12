@@ -9,13 +9,19 @@ package src.main;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class FixedCapacityStack<Item> {
+import java.util.Iterator;
+
+public class FixedCapacityStack<Item> implements Iterable<Item> {
 
     private Item[] a;
     private int N;
 
     public FixedCapacityStack(int cap) {
         a = (Item[]) new Object[cap];
+    }
+
+    public Iterator<Item> iterator() {
+        return new ReverseArrayIterator();
     }
 
     public boolean isEmpty() {
@@ -50,6 +56,18 @@ public class FixedCapacityStack<Item> {
         a = temp;
     }
 
+    private class ReverseArrayIterator implements Iterator<Item> {
+        private int i = N;
+
+        public boolean hasNext() {
+            return i > 0;
+        }
+
+        public Item next() {
+            return a[--i];
+        }
+    }
+
     // test code
     public static void main(String[] args) {
         FixedCapacityStack<String> s;
@@ -66,5 +84,9 @@ public class FixedCapacityStack<Item> {
             }
         }
         StdOut.println("( " + s.size() + " left on stack )");
+
+        for (String str : s) {
+            StdOut.println(" : " + str + "");
+        }
     }
 }
