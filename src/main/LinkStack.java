@@ -10,10 +10,8 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class LinkStack<Item> {
-
     private int N;
     private Node first;
-    private Node last;
 
     public void push(Item item) {
         Node oldFirst = first;
