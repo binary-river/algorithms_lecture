@@ -9,50 +9,56 @@ package src.main;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class LinkStack<Item> {
+public class LinkQueue<Item> {
+
     private int N;
     private Node first;
+    private Node last;
 
-    public void push(Item item) {
-        Node oldFirst = first;
-        first = new Node();
-        first.item = item;
-        first.next = oldFirst;
-        N++;
-    }
-
-    public Item pop() {
+    public Item dequeue() {
         Item item = first.item;
         first = first.next;
         N--;
+        if (isEmpty()) last = null;
         return item;
     }
 
-    public boolean isEmpty() {
-        return first == null;
+    public void enqueue(Item item) {
+        Node oldLast = last;
+        last = new Node();
+        last.item = item;
+        last.next = null;
+
+        if (isEmpty()) first = last;
+        else oldLast.next = last;
+        N++;
     }
 
     public int size() {
         return N;
     }
 
+    public boolean isEmpty() {
+        return N == 0;
+    }
 
     private class Node {
         Item item;
         Node next;
     }
 
+    // test client
     public static void main(String[] args) {
-        LinkStack<String> s = new LinkStack<>();
+        LinkQueue<String> q = new LinkQueue<>();
         while (!StdIn.isEmpty()) {
-            String w = StdIn.readString();
-            if (!w.equals("-")) {
-                s.push(w);
+            String t = StdIn.readString();
+            if (!t.equals("-")) {
+                q.enqueue(t);
             }
-            else if (!s.isEmpty()) {
-                StdOut.print(s.pop() + " ");
+            else if (!q.isEmpty()) {
+                StdOut.print(q.dequeue() + " ");
             }
         }
-        StdOut.println(" ( " + s.size() + " left on stack )");
+        StdOut.println(" ( " + q.size() + " left on queque )");
     }
 }
