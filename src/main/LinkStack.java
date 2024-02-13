@@ -28,6 +28,10 @@ public class LinkStack<Item> {
         return item;
     }
 
+    public Item peek() {
+        return first.item;
+    }
+
     public boolean isEmpty() {
         return first == null;
     }
