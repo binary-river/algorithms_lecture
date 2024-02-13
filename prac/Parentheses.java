@@ -41,7 +41,7 @@ public class Parentheses {
                     result = false;
                     break;
                 }
-                
+
                 Character t = stack.pop();
                 if (parentheses.get(t) != c) {
                     result = false;
