@@ -38,7 +38,7 @@ public class BinarySearch {
         if (key > a[mid]) return rank(key, a, mid + 1, hi);
         else if (key < a[mid]) return rank(key, a, lo, mid - 1);
         else return mid;
-    }
+    }// 197
 
     public static int rank(int key, int[] a, int lo, int hi, int depth) {
 
