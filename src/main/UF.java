@@ -30,33 +30,49 @@ public class UF {
     }
 
 
-    public int find(int p) {
-        return id[p];
+    // public int find(int p) {
+    //     return id[p];
+    // }
+
+    // find root value, instead of just a value of indexed array
+    private int find(int p) {
+        while (p != id[p]) p = id[p];
+        return p;
     }
 
     public void union(int p, int q) {
-        int pID = id[p];
-        int qID = id[q];
-
-        if (pID == qID) return;
-
-        for (int i = 0; i < id.length; i++) {
-            if (id[i] == pID) id[i] = qID;
-        }
+        int rootP = this.find(p);
+        int rootQ = this.find(q);
+        if (rootP == rootQ) return;
+        id[rootP] = rootQ;
         count--;
     }
 
+    // public void union(int p, int q) {
+    //     int pID = id[p];
+    //     int qID = id[q];
+    //
+    //     if (pID == qID) return;
+    //
+    //     for (int i = 0; i < id.length; i++) {
+    //         if (id[i] == pID) id[i] = qID;
+    //     }
+    //     count--;
+    // }
+
     public static void main(String[] args) {
 
+        Stopwatch watch = new Stopwatch();
         int N = StdIn.readInt();
         UF uf = new UF(N);
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if (uf.connected(p, q)) continue;
+            // if (uf.connected(p, q)) continue;
             uf.union(p, q);
-            StdOut.println(p + " " + q);
+            // StdOut.println(p + " " + q);
         }
         StdOut.println(uf.count() + " components");
+        StdOut.println("time : " + watch.elapsedTime());
     }
 }
